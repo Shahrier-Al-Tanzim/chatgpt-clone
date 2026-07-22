@@ -13,12 +13,12 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  clerkid String @unique
-  email String? @unique
+  id        String   @id @default(uuid())
+  clerkId   String   @unique
+  email     String?  @unique
   firstName String?
-  lastName String?
-  imageUrl String?
+  lastName  String?
+  imageUrl  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -39,37 +39,37 @@ model Conversation {
 
   // Relationships
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   // Note: If you don't have a Message model yet, you can omit this; 
   // when you do, remember to add `onDelete: Cascade` to avoid orphaned messages.
-  messages    Message[]
+  messages Message[]
 
   @@index([userId, lastMessageAt(sort: Desc)])
   @@index([userId, isPinned, lastMessageAt(sort: Desc)])
 }
 
-enum MessageRole{
+enum MessageRole {
   USER
   ASSISTANT
   SYSTEM
   TOOL
 }
 
-enum MessageStatus{
+enum MessageStatus {
   PENDING
   COMPLETE
   FAILED
 }
 
-model Message{
-  id  String @id @default(cuid())
+model Message {
+  id             String        @id @default(cuid())
   conversationId String
-  role MessageRole
-  status        MessageStatus @default(COMPLETE)
-  content       String @db.Text
-  parts         Json 
-  metadata      Json?
-  
+  role           MessageRole
+  status         MessageStatus @default(COMPLETE)
+  content        String        @db.Text
+  parts          Json?
+  metadata       Json?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
