@@ -185,14 +185,16 @@ function ChatItem({
       </SidebarMenuButton>
 
       <DropdownMenu>
-        <DropdownMenuTrigger>
-          <SidebarMenuAction
-            showOnHover
-            className="data-popup-open:bg-sidebar-accent"
-          >
-            <MoreHorizontalIcon />
-            <span className="sr-only">Chat actions</span>
-          </SidebarMenuAction>
+        <DropdownMenuTrigger
+          render={
+            <SidebarMenuAction
+              showOnHover
+              className="data-popup-open:bg-sidebar-accent"
+            />
+          }
+        >
+          <MoreHorizontalIcon />
+          <span className="sr-only">Chat actions</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="right" align="start">
           <DropdownMenuItem onClick={handleRename}>
