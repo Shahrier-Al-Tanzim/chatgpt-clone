@@ -1,5 +1,5 @@
 import { onBoard } from '@/features/auth/action/onboard';
-import { ChatShell } from '@/features/conversation/components/ChatShell';
+import { ChatShell } from '@/features/conversation/components/chat-shell';
 import { auth } from '@clerk/nextjs/server'
 import React from 'react'
 
